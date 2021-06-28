@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 
-//const { socketController } = require('../sockets/controller');
+const { socketController , socketEmissionAllClient } = require('../sockets/controller');
+
 
 class Server {
 
@@ -47,8 +48,11 @@ class Server {
 
 
        /* Sockets 
+        * ejecuto los eventos - escuchas emisiones de mis sockets
        */
         this.sockets();
+
+      
 
 
     }
@@ -87,30 +91,17 @@ class Server {
     }
 
 
-    /* configuracion para todos mis eventos de mi webSockets:  - Configuracion de Sockets
-     * ES decir necesito  saber cuando un cliente : se conecta - de desconecta - cuando un cliente emite algun evento perzonalizado  
-     * es parecido cuando estamos trabajando con modelos , rutas . exactamenete igual solo en los Sockets no son rutas y son eventos de webSockets
-     * webSockets son clientes del backend socketServer
-     * nostros tenemos que decirle desde el cliente que se connecte al servidor Sockets
-     * eso segnificaria tambien en la conexion podemos mandar JWT - jwt puede llegar en el socket arg
-     *  ver nota video 203 : tema de id de socket conectado como se debe manipular
-    */
+   
     sockets() {
-      
-        this.io.on ( "connection" , socket => {  
-          // aqui podemos hacer una validacion de jwt - si fracasa la validacion desconectamos sockets : lo veremos mas adelante 
-            
-           console.log('Cliente Connectado', socket.id )
+      /* escuchando conecciones de la parte de los clientes . 
+       * cuando se logra conectar al servidor -alli en el escop implementamos lo que queremos 
+      */
+      this.io.on('connection', socketController );
+      this.io.on('connection', socketEmissionAllClient );
 
-           socket.on('disconnect', () => { // observable on , depende del event disconnect para disparar el scope interior
-               console.log('Cliente desconectado', socket.id);
-           })
-
-        });
- 
-       // this.io.on('connection', socketController );
 
     } 
+
 
  
     
