@@ -28,9 +28,9 @@ const socket = io();
 */
 socket.on('estado-actual', ( payload ) => {
    
-
-  /*   const audio = new Audio('./audio/new-ticket.mp3');
-    audio.play(); */
+     // cuanda vez se dispare este evento del back quiero Reproducir el audio .  V : 221
+     const audio = new Audio('./audio/new-ticket.mp3');
+     audio.play(); // firefox funciona : googl eage tambien
 
 
     const [ ticket1, ticket2, ticket3, ticket4 ] = payload; // desestructutacion de array 
