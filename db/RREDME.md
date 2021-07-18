@@ -1,0 +1,1 @@
+ * Tener en cuenta que db json se reinicia desde zero cada dia nuevo

@@ -28,8 +28,8 @@ const socket = io();
  * si piensas porque no recibimos arg , pues tenemos todo en socket constante : Objeto : toda la informacion que necesitaremos .
 */
 socket.on('connect', () => {
-   //console.log('Conectado');
-   //console.log( socket )
+  // console.log('Conectado');
+  // console.log( socket ) // informacion del cliente conectado
 
    // manipulaciones de html ,css 
    lblOffline.style.display = 'none';

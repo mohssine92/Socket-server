@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
-const { socketController , socketEmissionAllClient } = require('../sockets/controller');
+const { socketControlador ,socketController , socketEmissionAllClient } = require('../sockets/controller');
 
 
 class Server {
@@ -17,7 +17,8 @@ class Server {
          * this.server : es el server que tengo que levantar no el de express en este caso
         */
         this.server = require('http').createServer( this.app );
-        /* this.io es toda la informacion de los sockets conectados - usamos this.io para mandar mensaejes a todas las personas que se encuentran   conectados a este backend : ver cursos especializados en sockets del profesor para entrar mas en detalles sobre el tema .
+
+        /* this.io es toda la informacion de los sockets conectados - usamos this.io para mandar mensaejes a todas las personas que se encuentran conectados a este backend : ver cursos especializados en sockets del profesor para entrar mas en detalles sobre el tema .
         * pues asi en this.io esta toda la informacion de los clientes conectados .
         * this.io : podemos decir asi que es nuestro servidor de sockets el cual es diferente al this.app : servidor de express, como tenemos 
         * dos servidores dos mundos conectados vivendo en mismo lado 
@@ -67,7 +68,7 @@ class Server {
 
 
 
-        /* lectura parseo body : no es nevesaria por la parte de los webs Sockets
+        /* lectura parseo body : no es necesaria por la parte de los webs Sockets
          * Es necesaria si vamos a implementar RestServer : configuramos que la data viaja atraves de req sera en objeto literal de json     
         */
 
@@ -75,7 +76,8 @@ class Server {
 
        /* Directorio Público : si la usamos porque tenemos que establecer algun cliente  
         * no olvidar los socket.io se basan en comunicacion cliente/servidor , servidor/cliente  
-        * en el public donde integramos build de react o angular : ver la parte de webServer .    
+        * en el public donde integramos build de react o angular : ver la parte de webServer .  
+        *   
        */
         this.app.use( express.static('public') );
      
@@ -94,10 +96,11 @@ class Server {
    
     sockets() {
       /* escuchando conecciones de la parte de los clientes . 
-       * cuando se logra conectar al servidor -alli en el escop implementamos lo que queremos 
+       * cuando se logra conectar al servidor - se ejeucta la funcion definida como segundo Arg
+       * puedo ejecutar todas las funciones que puedo . 
       */
-      this.io.on('connection', socketController );
-      this.io.on('connection', socketEmissionAllClient );
+      this.io.on('connection', socketControlador );
+      // this.io.on('connection', socketEmissionAllClient );
 
 
     } 

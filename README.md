@@ -26,3 +26,8 @@
  $ npm init -y : crera package.json
  $ npm i express cors dotenv 
  $ npm install socket.io 
+
+
+ ** nodemon.json , ignore : es decir decir si hay cambios en este lugar no Reinicialices : **
+ - observe ya nodemon no se cae esta ignorando cambios en archivo db.json que sufra cambios 
+ - nodemon  no se reinicia por cambios en archivos de html , pero si por archivos js - json , que se considera archvos de la parte del servidor no del front-end 
